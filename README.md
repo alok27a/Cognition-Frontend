@@ -120,7 +120,7 @@ cd Safe-Chain-Frontend
 ```
 Install all the NPM packages:
 ```
-npm i
+npm i -f
 ```
 In order to run the frontend:
 ```
