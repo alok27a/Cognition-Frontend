@@ -10,6 +10,7 @@ import {
   DrawerContent,
   useDisclosure,
   Heading,
+  Button,
 } from "@chakra-ui/react";
 import { FaHome, FaAngleDoubleRight, FaCcVisa, FaKey } from "react-icons/fa";
 import logo from '../assets/cover.png'
@@ -40,6 +41,9 @@ const SidebarContent = ({ onClose, ...rest }) => {
           {link.name}
         </NavItem>
       ))}
+      <Box as={NavLink} key={"logout"} to={'/'} mb={4} style={{position:"absolute",display:"flex",alignItems: 'center',justifyContent: 'center', bottom:"0",width:"100%"}}>
+         <Button w="50%" colorScheme="red">Logout</Button>
+      </Box>
     </Box>
   );
 };

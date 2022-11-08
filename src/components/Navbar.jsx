@@ -91,8 +91,8 @@ const Navbar = () => {
   const [index2, setIndex2] = React.useState();
   const [index3, setIndex3] = React.useState();
   const [index4, setIndex4] = React.useState();
-  const [imageLoading,setImageLoading] = React.useState(false);
-  const [imageSending,setImageSending] = React.useState(false);
+  const [imageLoading, setImageLoading] = React.useState(false);
+  const [imageSending, setImageSending] = React.useState(false);
   const [finalImageOrder, setFinalImageOrder] = React.useState([]);
   const handleClick = () => setShow(!show);
   const handleClick1 = () => setShow1(!show1);
@@ -177,10 +177,10 @@ const Navbar = () => {
     console.log(temp);
     console.log(
       JSON.stringify({
-        image1:temp[finalImageOrder[0]-1],
-        image2: temp[finalImageOrder[1]-1],
-        image3: temp[finalImageOrder[2]-1],
-        image4: temp[finalImageOrder[3]-1],
+        image1: temp[finalImageOrder[0] - 1],
+        image2: temp[finalImageOrder[1] - 1],
+        image3: temp[finalImageOrder[2] - 1],
+        image4: temp[finalImageOrder[3] - 1],
       })
     );
     fetch("http://localhost:3000/images/verify", {
@@ -188,13 +188,13 @@ const Navbar = () => {
       headers: {
         "Content-Type": "application/json",
         "auth-token": sessionStorage.getItem("secretKey"),
-        "password": sessionStorage.getItem("password"),
+        password: sessionStorage.getItem("password"),
       },
       body: JSON.stringify({
-        image1: window.btoa(temp[finalImageOrder[0]-1]),
-        image2: window.btoa(temp[finalImageOrder[1]-1]),
-        image3: window.btoa(temp[finalImageOrder[2]-1]),
-        image4: window.btoa(temp[finalImageOrder[3]-1]),
+        image1: window.btoa(temp[finalImageOrder[0] - 1]),
+        image2: window.btoa(temp[finalImageOrder[1] - 1]),
+        image3: window.btoa(temp[finalImageOrder[2] - 1]),
+        image4: window.btoa(temp[finalImageOrder[3] - 1]),
       }),
     })
       .then((response) => response.json())
@@ -306,60 +306,110 @@ const Navbar = () => {
                 finalFocusRef={finalRef}
                 isOpen={isOpen2}
                 onClose={onClose2}
-                size="xl"
+                size="f"
+                m={8}
               >
                 <ModalOverlay />
                 <ModalContent>
                   <ModalHeader>Chose the correct image order</ModalHeader>
                   <ModalCloseButton />
-                  <ModalBody w="100%" pb={6}>
+                  <ModalBody w="100%" pb={6} mb={8}>
                     <Text>Order the images: </Text>
                     <Flex style={{ flexWrap: "wrap", flex: 1 }} gap={4}>
-                      <Box  p={4}style={{ position: "relative" }}>
-                        {imageLoading && <Spinner/>}
-                        {!imageLoading && <img src={image1} onClick={() => setIndex("1")} />}
-                        <Text style={{ position: "absolute" }}>
+                      <Box p={4} style={{ position: "relative" }}>
+                        {imageLoading && <Spinner />}
+                        {!imageLoading && (
+                          <img
+                            src={image1}
+                            height="500px"
+                            onClick={() => setIndex("1")}
+                          />
+                        )}
+                        <Text
+                          m={4}
+                          style={{
+                            position: "absolute",
+                            textAlign: "center",
+                            width: "250px",
+                            fontSize: "2rem",
+                            border: "2px solid black",
+                          }}
+                        >
                           {finalImageOrder.indexOf("1") + 1}
                         </Text>
                       </Box>
                       <Box p={4}>
-                      {imageLoading && <Spinner/>}
+                        {imageLoading && <Spinner />}
                         <img src={image2} onClick={() => setIndex("2")} />
-                        <Text>{finalImageOrder.indexOf("2") + 1}</Text>
+                        <Text
+                          style={{
+                            position: "absolute",
+                            textAlign: "center",
+                            width: "250px",
+                            fontSize: "2rem",
+                            border: "2px solid black",
+                          }}
+                          m={4}
+                        >
+                          {finalImageOrder.indexOf("2") + 1}
+                        </Text>
                       </Box>
                       <Box p={4}>
-                      {imageLoading && <Spinner/>}
+                        {imageLoading && <Spinner />}
                         <img src={image3} onClick={() => setIndex("3")} />
-                        <Text>{finalImageOrder.indexOf("3") + 1}</Text>
+                        <Text
+                          style={{
+                            position: "absolute",
+                            textAlign: "center",
+                            width: "250px",
+                            fontSize: "2rem",
+                            border: "2px solid black",
+                          }}
+                          m={4}
+                        >
+                          {finalImageOrder.indexOf("3") + 1}
+                        </Text>
                       </Box>
                       <Box p={4}>
-                      {imageLoading && <Spinner/>}
+                        {imageLoading && <Spinner />}
                         <img src={image4} onClick={() => setIndex("4")} />
-                        <Text>{finalImageOrder.indexOf("4") + 1}</Text>
+                        <Text
+                          style={{
+                            position: "absolute",
+                            textAlign: "center",
+                            width: "250px",
+                            fontSize: "2rem",
+                            border: "2px solid black",
+                          }}
+                          m={4}
+                        >
+                          {finalImageOrder.indexOf("4") + 1}
+                        </Text>
                       </Box>
                     </Flex>
                   </ModalBody>
 
-                  <ModalFooter>
-                    <Button
-                      colorScheme="blue"
-                      mr={3}
-                      onClick={imagesSend}
-                      isLoading={imageSending}
-                      loadingText="Sending Images"
-                    >
-                      Submit Images
-                    </Button>
-                    <Button
-                      mr={3}
-                      onClick={() => {
-                        setFinalImageOrder([]);
-                      }}
-                    >
-                      Clear Order
-                    </Button>
-                    <Button onClick={onClose2}>Cancel</Button>
-                  </ModalFooter>
+                  <Flex m={4} p={4} justify="center" align="center">
+                      <Button
+                        colorScheme="blue"
+                        mr={3}
+                        onClick={imagesSend}
+                        isLoading={imageSending}
+                        loadingText="Sending Images"
+                      >
+                        Submit Images
+                      </Button>
+                      <Button
+                        mr={3}
+                        onClick={() => {
+                          setFinalImageOrder([]);
+                        }}
+                        colorScheme="red"
+                      >
+                        Clear Order
+                      </Button>
+                      <Button onClick={onClose2}>Cancel</Button>
+                  </Flex>
                 </ModalContent>
               </Modal>
             </HStack>
