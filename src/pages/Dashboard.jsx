@@ -67,7 +67,7 @@ const Dashboard = () => {
     }
     else {
       setSavingLoading(true)
-      let result = await fetch("https://safe-chain.vercel.app/password/add", {
+      let result = await fetch("http://localhost:3000/password/add", {
         method: "POST",
         body: JSON.stringify({
           "name": websitename,
@@ -80,7 +80,9 @@ const Dashboard = () => {
         headers: {
           "Content-Type": "application/json",
           'Accept': 'application/json',
-          "Access-Control-Allow-Origin": "*"
+          "Access-Control-Allow-Origin": "*",
+          "auth-token":sessionStorage.getItem("secretKey"),
+          "password": sessionStorage.getItem("password")
         }
       })
       setSavingLoading(false)
@@ -119,7 +121,7 @@ const Dashboard = () => {
     }
     else {
       setSavingLoading(true)
-      let result = await fetch("https://safe-chain.vercel.app/creditcard/add", {
+      let result = await fetch("http://localhost:3000/creditcard/add", {
         method: "POST",
         body: JSON.stringify({
           "number": creditcard,
@@ -132,7 +134,9 @@ const Dashboard = () => {
         headers: {
           "Content-Type": "application/json",
           'Accept': 'application/json',
-          "Access-Control-Allow-Origin": "*"
+          "Access-Control-Allow-Origin": "*",
+          "auth-token":sessionStorage.getItem("secretKey"),
+          "password": sessionStorage.getItem("password")
         }
       })
       setSavingLoading(false)
